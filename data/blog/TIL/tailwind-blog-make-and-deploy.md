@@ -23,9 +23,7 @@ git push origin master
 
 했더니, 아래 내용의 error가 떴다
 
-  <div className="my-1 px-2 w-full overflow-hidden xl:my-1 xl:px-2 xl:w-1/2">
-    ![Maple](/static/images/git-first-push-error.png)
-  </div>
+<Image src="/static/images/git-first-push-error.png" width={800} height={100}/>
 
 ### 원인
 
@@ -35,20 +33,16 @@ clone을 https로 해서, remote가 https이기 때문
 
 ① ssh를 복사해서
 
-  <div className="my-1 px-2 w-full overflow-hidden xl:my-1 xl:px-2 xl:w-1/2">
-    ![Maple](/static/images/git-ssh.png)
-  </div>
+<Image src="/static/images/git-ssh.png" width={800} height={40}/>
+
 ② github 설정 가서, 붙여넣기
-  <div className="my-1 px-2 w-full overflow-hidden xl:my-1 xl:px-2 xl:w-1/2">
-    ![Maple](/static/images/git-ssh-github.png)
-  </div>
+
+<Image src="/static/images/git-ssh-github.png" width={500} height={210}/>
+
 ③ https로 되어있는 origin을 지우고 ➜ GitHub에서 SSH 복사해, `remote add origin 붙여넣기` ➜ `push`
-  <div className="my-1 px-2 w-full overflow-hidden xl:my-1 xl:px-2 xl:w-1/2">
-    ![Maple](/static/images/git-clone-ssh.png)
-  </div>
-  <div className="my-1 px-2 w-full overflow-hidden xl:my-1 xl:px-2 xl:w-1/2">
-    ![Maple](/static/images/git-fix.png)
-  </div>
+
+<Image src="/static/images/git-clone-ssh.png" width={600} height={210}/>
+<Image src="/static/images/git-fix.png" width={600} height={230}/>
 
 ## 3. 배포
 
