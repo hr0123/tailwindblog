@@ -1,9 +1,9 @@
 ---
-title: 'Tailwind 블로그 & TailwindCSS'
+title: 'TailwindCSS'
 date: '2022-09-13'
 tags: ['tailwind', 'clone', 'git', 'deploy', 'Vercel']
 draft: false
-summary: 'Tailwind 블로그 생성 / git clone 후 첫 push(오류 해결) / TailwindCSS 장단점 / inline style과의 차별점'
+summary: 'Tailwind 블로그 생성 | git clone 후 첫 push(오류 해결) | TailwindCSS 장단점 | inline style과의 차별점'
 ---
 
 # Tailwind 블로그 생성
