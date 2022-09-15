@@ -1,5 +1,5 @@
 ---
-title: 'TypeScript 프로젝트 생성, bare repository에 연결'
+title: 'TypeScript 프로젝트와 bare repository 연결'
 date: '2022-09-14'
 tags: ['typescript', 'git', 'repository', 'bare repository']
 draft: false
