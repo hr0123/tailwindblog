@@ -6,7 +6,7 @@ draft: false
 # summary: 'TypeScript 프로젝트 생성하는 git 절차 | 서버에 bare repository 생성해 프로젝트와 연결'
 ---
 
-# 1. TypeScript 프로젝트 생성(iTerm2)
+## 1. iTerm2) TypeScript 프로젝트 및 bare repository 생성 후, 연결
 
 ```javascript
 mkdir 폴더명 //ex) typescript-study
@@ -19,6 +19,7 @@ cat config
 ⇨ 결과: [bare = false](https://git-scm.com/docs/git-config#Documentation/git-config.txt-corebare)
 
 ```javascript
+//서버에 bare repository 생성
 //HOME(/Users) 가서
 git init --bare BareRepository이름 //ex) gitbare
 ```
@@ -26,8 +27,9 @@ git init --bare BareRepository이름 //ex) gitbare
 ⇨ 결과: `Initialized empty Git repository in /Users/leehaeri/gitbare/`
 
 ```javascript
+//프로젝트 생성한거를 bare repository와 연결
 cd typescript-study
-git remote add origin /Users/leehaeri/gitbare/ //프로젝트 생성한거를 bare repository와 연결
+git remote add origin /Users/leehaeri/gitbare/
 git remote -v
 ```
 
@@ -36,8 +38,7 @@ git remote -v
 `origin /Users/leehaeri/gitbare/ (push)`
 
 ```javascript
-vi README.md //or code . 후 파일 생성
-//➜ 내용 작성
+vi README.md //or code . 후 파일 생성 ➜ 내용 작성
 git add .
 git commit -m “ ”
 git push origin master
@@ -45,7 +46,7 @@ git push origin master
 
 ---
 
-# 2. 서버에 bare repository 생성(iTerm2)
+## 2. iTerm2) 서버에 생성된 bare repository 설정
 
 ```javascript
 // /Users/leehaeri로 가서
@@ -84,7 +85,7 @@ sh --version
 
 ---
 
-# 3. 생성한 typescript 프로젝트와 bare repository를 연결
+## 3. VSCode) TypeScript 프로젝트 설정
 
 ```javascript
 //폴더 'typescript-study'에서
