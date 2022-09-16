@@ -1,9 +1,8 @@
 ---
-title: 'JavaScript 기초부터 마스터하기(w/MDN)'
+title: 'JavaScript, React, NextJS 사용 이유'
 date: '2022-09-15'
-tags: ['JavaScript']
+tags: ['JavaScript', 'React', 'NextJS']
 draft: false
-summary: 'JavaScript, React, NextJS 사용 이유 | NextJS TypeScript 프로젝트 생성 '
 ---
 
 ## JavaScript 사용 이유
@@ -32,11 +31,3 @@ HTML 문서에, 웹사이트상에서 동적 상호작용성(ex. 게임, 버튼�
 
 - SSR :
 - SSG :
-
----
-
-# 1. NextJS TypeScript 프로젝트 생성
-
-```
-
-```
