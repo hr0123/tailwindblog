@@ -1,7 +1,19 @@
 ---
 title: 'HTML'
 date: '2022-09-16'
-tags: ['HTML', 'HTML Tag', 'Page Stucture', 'Semantic Tag', 'SEO', 'Accessibility']
+lastmod: '2022-09-18'
+tags:
+  [
+    'HTML',
+    'W3C',
+    'Page Stucture',
+    'Element',
+    'Attribute',
+    'HTML Tags',
+    'Semantic Tag',
+    'SEO',
+    'Accessibility',
+  ]
 draft: false
 summary: 'HTML 필수 기본'
 ---
