@@ -2,7 +2,7 @@
 title: 'CSS'
 date: '2022-09-18'
 lastmod: '2022-09-18'
-tags: ['css', 'selector', 'display', 'position', 'flexbox']
+tags: ['css', 'css property', 'selector', 'display', 'position', 'flexbox']
 draft: false
 summary: 'CSS 필수 기본'
 ---
@@ -69,9 +69,11 @@ Block`<div>` VS Inline`<span>`
 
 ---
 
-# Flex box(Layouts)
+# Flex box (Layouts)
 
-\*Float : text와 image 간 배치 설정
+🔗 [MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox) | [연습](https://flexboxfroggy.com/) | [+](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
+
+\*[Float](https://developer.mozilla.org/en-US/docs/Web/CSS/float) : text와 image 간 배치 설정
 
 ## Container에 부여하는 속성값
 
