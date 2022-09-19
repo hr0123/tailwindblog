@@ -3,7 +3,7 @@ title: 'Redux'
 date: '2022-09-19'
 lastmod: '2022-09-19'
 tags: ['Redux']
-draft: false
+draft: true
 summary: 'Redux 세미나 준비'
 ---
 
