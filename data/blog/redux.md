@@ -166,7 +166,7 @@ export const counterSlice = createSlice({
       state.value -= 1
     },
     incrementByAmount: (state, action) => {
-      state.value += action.payload
+      state.value = state.value * action.payload
     },
   },
 })
@@ -188,12 +188,17 @@ export function Counter() {
 
   return (
     <div>
-      <button aria-label="Decrement value" onClick={() => dispatch(decrement())}>
-        Decrement
-      </button>
-      <span>{count}</span>
-      <button aria-label="Increment value" onClick={() => dispatch(increment())}>
-        Increment
+      <div>
+        <button aria-label="Decrement value" onClick={() => dispatch(decrement())}>
+          -
+        </button>
+        <span>{count}</span>
+        <button aria-label="Increment value" onClick={() => dispatch(increment())}>
+          +
+        </button>
+      </div>
+      <button aria-label="double value" onClick={() => dispatch(incrementByAmount(2))}>
+        x2
       </button>
     </div>
   )
