@@ -31,8 +31,8 @@ summary: 'Redux 사용이유, 흐름, 3가지 원칙 | RTK 사용이유, API | R
 # Redux Toolkit 사용 이유
 
 1. Redux store 구성 설정 코드 간소화 : action creator와 action type을 따로 생성하지 않아도 됨(`configureStore()`)
-2. Redux를 유용하게 사용하려면 많은 패키지들을 추가 설치해야했는데, RTK API에 미리 내장되어있음
-3. Redux의 Boilerplate code(중복 코드) 줄여줌
+2. Redux를 유용하게 사용하려면 미들웨어 등 여러 패키지들을 추가 설치해야했는데, Redux Toolkit API에 미리 내장되어있음
+3. 반복되는 코드 사용을 줄여줌
 
 ---
 
@@ -135,11 +135,11 @@ function counterReducer(state = initialState, action) {
   let { type, payload } = action
   switch (type) {
     case 'INCREMENT': //action은 대문자 표기
-      return (state += 1)
+      return { ...state, value: state.value + 1 }
     case 'DECREMENT':
-      return (state -= 1)
+      return { ...state, value: state.value - 1 }
     default:
-      return state.value
+      return state
   }
 }
 export default counterReducer
