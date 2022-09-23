@@ -19,4 +19,8 @@ draft: false
 
 ## 3. VScode : 컴포넌트 생성
 
-.tsx 파일 생성해 ➜ 복사해온 로직 붙여넣기
+1. `.tsx` 파일 생성해 ➜ 복사해온 로직 붙여넣기
+2. `const` ➜ `export const`로 수정
+3. 컴포넌트명 수정
+4. 맨 하단의 `export default SvgComponent;` 지우기
+5. 이제, 이 컴포넌트를 다른 곳에서 import해 사용하면 됨
