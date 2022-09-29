@@ -1,18 +1,29 @@
 ---
-title: '동기/비동기 | Callback함수 | Promise'
+title: '동기/비동기 | Callback함수 | Promise | async await'
 date: '2022-09-25'
 lastmod: '2022-09-26'
-tags: ['synchronous', 'asynchronous', 'callback', 'promise']
+tags:
+  [
+    'synchronous',
+    'asynchronous',
+    'callback',
+    'promise',
+    'async await',
+    'promise.all',
+    'promise.race',
+  ]
 draft: false
 # summary: ''
 ---
 
 # JavaScript의 동기/비동기
 
-**JavaScript는 heavy work(network, read files 등)를 비동기적으로 실행 가능하므로, heavy work라 오래걸리는 작업 완료를 기다리지 않고도 다음 코드를 시작 가능하므로 효율적이다**  
-JavaScript는 hoisting(코드 실행에 앞서 일단, 선언된 변수와 함수들을 문서 최상단 순서로 끌어올려 요청들을 브라우저에 전달)한다
-→ 그 후, 응답 오는 것을 전부 기다렸다가 한꺼번에 실행하는 것(동기 Synchronous)이 아닌,
-각각 응답이 오는대로 그 응답을 실행한다(비동기 Asynchronous)
+#### JavaScript는 코드를 동기적으로 실행한다(각 요청이 응답 완료되어야, 다음 로직 요청을 보냄) → 그래서 처리시간이 오래 소요되는 요청이 있을 경우, 사용자 화면에 UI가 렌더링되는 시간이 오래 걸리는 문제가 생긴다 → 따라서, 처리시간 오래 걸리는 heavy work들은 비동기 처리를 해줘야함(방법: 인자로 Callback함수를 받는: Promise, asymc await)
+
+- JavaScript는 heavy work(network, read files 등)를 비동기적으로 실행 가능하므로, heavy work라 오래걸리는 작업 완료를 기다리지 않고도 다음 코드를 시작 가능하므로 효율적이다
+- JavaScript는 hoisting(코드 실행에 앞서 일단, 선언된 변수와 함수들을 문서 최상단 순서로 끌어올려 요청들을 브라우저에 전달)한다  
+  → 그 후, 응답 오는 것을 전부 기다렸다가 한꺼번에 실행하는 것(동기 Synchronous)이 아닌,
+  각각 응답이 오는대로 그 응답을 실행한다(비동기 Asynchronous)
 
 ---
 
@@ -284,3 +295,121 @@ user1
 ---
 
 # [Callback Hell 해결방법 2] async await
+
+Promise를 사용하지 않아도 결과로 Promise를 반환(코드 더 간결해지는 장점)
+
+## 1. Promise 함수를 async 사용해 바꾸기
+
+```js
+//1️⃣ Promise 로직
+function fetchUser() {
+  return new Promise((resolve, reject) => {
+    //do network request in 10 secs...
+    //return 'haeri'
+    resolve('haeri')
+  })
+}
+
+//📌 결과 : Promise쓴 위 로직이랑 async쓴 아래 로직이랑 동일
+const user = fetchUser()
+console.log(user) //Pending -> fetchUser()의 Promise 로직에 resolve 사용 -> fulfilled로 바뀜
+user.then(console.log) //'haeri'
+
+//2️⃣ async 사용해 리팩토링
+async function fetchUser() {
+  return 'haeri'
+}
+```
+
+## 2. async & await
+
+Promise를 반환하는 함수는 원래는 비동기적으로 실행되지만,  
+async 안에서만 사용 가능한 await을 Promise 함수 앞에 사용하면  
+➜ 마치 동기적으로 실행되듯, Promise 함수의 결과(응답)가 나온 후 그 다음 줄 로직을 실행한다
+
+- async await 에러처리 구문은 `try {} catch() {}`
+
+```js
+function delay(ms) {
+  //return new Promise((resolve, reject) => {
+  //  setTimeout(resolve, ms)
+  //})
+  return new Promise((resolve) => setTimeout(resolve, ms))
+}
+
+//동기적으로 실행시킬 Promise반환 함수 delay()의 결과(응답)가 나온 후 그 다음 줄 로직을 실행
+async function getApple() {
+  await delay(1000)
+  throw 'error'
+  return '🍎'
+}
+
+async function getBanana() {
+  await delay(1000)
+  return '🍌'
+}
+```
+
+## 3. 병렬 처리(1)
+
+Promise반환 함수를 선언&할당 하면 그 즉시 실행되므로 서로 영향주지않고 진행되기 때문에,  
+병렬처리(순차 아닌 동시 진행)하여 => 시간을 효율적으로 사용
+
+```js
+//1️⃣ Promise 사용: Promise도 너무 중첩 사용하게 되면 콜백지옥과 유사한 문제점 발생함
+function pickFruits() {
+  return getApple().then(apple => {
+    return getBanana().then(banana =>
+      `${apple}+${banana}`
+    )
+  })
+}
+
+//📌 결과(위 로직으로 다 받아와지면, 콘솔에 찍히게)
+//pickFruits().then(result =>
+//  console.log(result);
+//)
+pickFruits().then(console.log);  //2초 뒤(아래 병렬처리 후에는 1초 뒤), 🍎+🍌
+
+//2️⃣ 리팩토링1: async&awiat 사용
+async function pickFruits() {
+  try {
+    //const apple = await getApple();
+    //const banana = await getBanana();
+    //위 두 로직은 Promise반환 함수라 만들자마자(선언&할당 하자마자) 실행되어 서로 영향주지않고 진행되므로,
+    //병렬처리(순차 아닌 동시 진행)하여 시간을 효율적으로 사용
+    const applePromise = getApple();
+    const bananaPromise = getPromise();
+    const apple = await applePromise;
+    const banana = await bananaPromise;
+  } catch() {
+
+  };
+  return `${apple}+${banana}`;
+}
+```
+
+## 4. 병렬처리(2) : Promise API `.all`
+
+```js
+//3️⃣ 리팩토링2: Promise API(.all) 사용
+function pickAllFruits() {
+  return Promise.all([getApple(), getBanana()].then(fruitsArr =>
+    fruitsArr.join('+');
+  ))
+}
+
+pickAllFruits().then(console.log);  //1초 뒤, 🍎+🍌(위의 병렬처리한 pickFruits와 같은 결과)
+```
+
+## 5. 병렬처리(3) : Promise API `.race`
+
+Promise함수들 중 더 먼저 결과 나오는 것의 결과만 반환
+
+```js
+function pickOnlyOne() {
+  return Promise.race([getApple(), getBanana()])
+}
+
+pickOnlyOne().then(console.log) //1초 뒤, 🍌
+```
