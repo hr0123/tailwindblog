@@ -1,7 +1,7 @@
 ---
 title: '동기/비동기 | Callback함수 | Promise | async await'
 date: '2022-09-25'
-lastmod: '2022-09-26'
+lastmod: '2022-09-27'
 tags:
   [
     'synchronous',
