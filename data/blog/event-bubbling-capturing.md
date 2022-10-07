@@ -1,8 +1,8 @@
 ---
-title: 'Event Bubbling & Capturing'
+title: 'Event Bubbling & Capturing | onClick함수 id 이슈 해결'
 date: '2022-10-05'
 tags: ['event bubbling', 'event capturing', 'propagate up', 'propagate down']
-draft: false
+draft: true
 # summary: ''
 ---
 
@@ -49,3 +49,44 @@ div.addEventListener('click', function () {
 ⇧ 이대로 하면 출력 순서(이벤트 버블링): div -> body -> html
 
 ➜ 이벤트 캡쳐링으로 설정: addEventListner의 세번째 인자로 true를 넣으면, 해당 요소의 클릭이벤트가 클릭한 요소의 이벤트보다 먼저 실행됨
+
+---
+
+# onClick함수 id 이슈
+
+```js
+// Container
+const onClickMenu = (event: React.MouseEvent<HTMLElement>) => {
+  if (event.target instanceof Element) {
+    props.setSelectedMenu(event.target.id)
+  }
+}
+```
+
+## 수정 전(오류)
+
+전체를 감싸고
+
+```js
+// Presenter
+<div>
+  <div>
+    <div id="menu 1" onClick={onClickMenu}>
+      MENU 1
+    </div>
+    <div>Subtitle</div>
+  </div>
+</div>
+```
+
+## 수정 후(해결)
+
+```js
+// Presenter
+<div id="menu 1" onClick={onClickMenu}>
+  <div id="menu 1">
+    <div id="menu 1">MENU 1</div>
+    <div id="menu 1">Subtitle</div>
+  </div>
+</div>
+```
