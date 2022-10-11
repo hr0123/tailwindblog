@@ -2,7 +2,7 @@
 title: 'Event Bubbling & Capturing | onClick함수 id 이슈 해결'
 date: '2022-10-05'
 tags: ['event bubbling', 'event capturing', 'propagate up', 'propagate down']
-draft: true
+draft: false
 # summary: ''
 ---
 
@@ -65,8 +65,6 @@ const onClickMenu = (event: React.MouseEvent<HTMLElement>) => {
 
 ## 수정 전(오류)
 
-전체를 감싸고
-
 ```js
 // Presenter
 <div>
@@ -80,6 +78,14 @@ const onClickMenu = (event: React.MouseEvent<HTMLElement>) => {
 ```
 
 ## 수정 후(해결)
+
+#### - 원인 :
+
+onClickMenu 함수가 event.target의 id를 가져오기때문에 id가 없는 다른 하위 태그들 부분을 클릭했을 때는 onClick 이벤트가 작동하지 않았던 것!
+
+#### - 해결방법 :
+
+onClickMenu 이벤트가 작동해야하는 자식 태그들에도 id값을 부여해줌
 
 ```js
 // Presenter
