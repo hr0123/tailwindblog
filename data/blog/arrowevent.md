@@ -122,7 +122,7 @@ textContainer.addEventListener('keydown', (e: Event) => {
 });
 ```
 
-## 최종
+## 완성
 
 맨 아래/위 wrapper인 경우 처리 추가
 
@@ -137,6 +137,39 @@ textContainer.addEventListener('keydown', (e: Event) => {
   if ((e as KeyboardEvent).key === 'ArrowUp') {
     if (!currentFocused.previousElementSibling.children[0]) return;
     (currentFocused.previousElementSibling.children[0].children[1] as HTMLElement).focus();
+  }
+});
+```
+
+---
+
+# 추가)
+
+## drag and drop 작업 하면서 wrapper에 id를 없게 조정하면서, 수정한 arrow event 최종 코드
+
+이제 wrapper에는 id값이 없고 textContainer에 id값이 있기 때문에, `shadow.getElementById((<any>e).path[1].id)` 하면 textContainer를 받아오므로  
+➜ wrapper를 받아오기 위해 `.parentElement`를 추가해, focusedWrapper에 저장해 사용
+
+```js
+const inputId = String(Math.floor(Math.random() * 1000000000));
+// wrapper.setAttribute("id", inputId);
+// ...(중략)
+textContainer.addEventListener("keydown", (e: Event) => {
+  const focusedWrapper = shadow.getElementById((<any>e).path[1].id).parentElement as HTMLElement;
+
+  if ((e as KeyboardEvent).key === "ArrowDown") {
+    if (!focusedWrapper.nextElementSibling) return;
+    (focusedWrapper.nextElementSibling.children[0].children[1] as HTMLElement).focus();
+  }
+
+  if ((e as KeyboardEvent).key === "ArrowUp") {
+    if (!focusedWrapper.previousElementSibling.children[0]) return;
+    (focusedWrapper.previousElementSibling.children[0].children[1] as HTMLElement).focus();
+  }
+
+  shadow.activeElement.setAttribute("placeholder", 'Type "/" for commands');
+  if (text !== shadow.activeElement) {
+    text.removeAttribute("placeholder");
   }
 });
 ```
