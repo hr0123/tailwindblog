@@ -9,8 +9,6 @@ summary: 'Class형 컴포넌트의 컴포넌트 생명주기 메서드, 그리�
 🔗 [참고1](https://youtu.be/jh3U-1ouuKQ)  
 🔗 [참고2](https://velog.io/@soyi47/React-Class-Component의-Lifecycle-Methods)
 
-<br>
-
 # 컴포넌트의 생명주기(Life Cycle)
 
 ## 1. render
